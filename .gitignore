@@ -1,1 +1,9 @@
 
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mtj.tmp/
+*.class
+.lsidemo
+.idea/
+*.iml
+.vscode/
