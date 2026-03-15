@@ -22,15 +22,16 @@ public class NbpService {
             try {
                 String url = "https://api.nbp.pl/api/exchangerates/rates/a/usd/" + checkDate + "?format=json";
                 NbpResponse response = restTemplate.getForObject(url, NbpResponse.class);
-
                 if (response != null && !response.rates().isEmpty()) {
                     return response.rates().get(0).mid();
                 }
             } catch (HttpClientErrorException.NotFound e) {
-                log.warn("Rate for {} not found, checking previous day...", checkDate);
                 checkDate = checkDate.minusDays(1);
+            } catch (Exception e) {
+                log.error("Błąd połączenia z NBP: {}. Spróbuj połączyć się przez HTTP або sprawdź certyfikaty.", e.getMessage());
+                throw new RuntimeException("Nie udało się pobrać kursu walut z powodu problemów technicznych (SSL/Network).");
             }
         }
-        throw new RuntimeException("Unable to retrieve exchange rate from NBP");
+        throw new RuntimeException("Brak danych kursowych w NBP dla wybranego zakresu dat.");
     }
 }
