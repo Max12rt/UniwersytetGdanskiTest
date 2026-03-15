@@ -3,6 +3,10 @@
 
 Aplikacja konsolowa w języku Java (Spring Boot) do przeliczania kosztów zakupu komputerów z USD na PLN na podstawie kursów NBP.
 
+## Uwagi techniczne
+* Aplikacja korzysta z protokołu HTTPS zgodnie z treścią zadania. 
+* W przypadku wystąpienia błędu certyfikatów SSL (`PKIX path building failed`) na środowisku lokalnym, należy upewnić się, że certyfikat `api.nbp.pl` jest dodany do TrustStore używanej wersji JDK lub sprawdzić ustawienia sieciowe/proxy.
+
 ## 1. Wymagania systemowe
 * **Java:** wersja 17 lub 21.
 * **Maven:** (dołączony wrapper `mvnw` lub zainstalowany lokalnie).
